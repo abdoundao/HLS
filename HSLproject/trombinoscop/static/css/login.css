@@ -1,0 +1,8 @@
+header p {
+	padding: 10px;
+	line-height: 80px;
+	font-size: 40px;
+	display: inline;
+	color: #FFF;
+	margin: 0;
+}

@@ -1,0 +1,13 @@
+version: "3"
+services:
+ application_client:
+  build:
+   context: .
+  expose:
+   - "80"
+  ports:
+   - "80:80"
+  volumes:
+   - .:/HLSproject
+#  command: sh -c "python3 manage.py migrate"
+  command: sh -c "python3 manage.py runserver 0.0.0.0:80"

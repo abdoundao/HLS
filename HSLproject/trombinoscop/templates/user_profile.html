@@ -1,0 +1,53 @@
+{% extends "base.html" %} <!-- ce template hérite de base.html -->
+{% load static %} <!-- récupération du chemin vers le dossier static -->
+
+{% block title %}Création d'un profile{% endblock title %} <!-- Titre de la page -->
+
+{% block bodyId %}userProfilePage{% endblock bodyId %} <!-- id de la section content -->
+
+<!-- contenu de la head pour ajouter les css et script -->
+{% block headContent %}
+<link rel = "stylesheet" type = "text/css" href = "{% static 'css/login.css' %}"/>
+<script type = "text/javascript" src = "{% static 'js/userProfile.js' %}"></script>
+{% endblock headContent %}
+
+<!-- contenu du header -->
+{% block headerContent %}
+<p>Trombinoscop</p>
+{% endblock headerContent %}
+
+<!-- Contenu de la section content pour afficher les formulaires étudiant et employé ainsi que celui du selecteur de formulaire -->
+{% block content %}
+<h1>Création d'un compte</h1>
+<form>
+{% csrf_token %}
+	<p>
+		<label for = "profileType">Vous êtes :</label>
+		<select id = "profileType">
+			<option value = "student" {% if studentForm.is_bound %} selected = "selected" {% endif %}>étudiant</option>
+			<option value = "employee" {% if employeeForm.is_bound %} selected = "selected" {% endif %}>employé</option>
+		</select>
+	</p>
+</form>
+<form action = "register" method = "get" id = "studentForm">
+{% csrf_token %}
+	{% if error %}
+	<p class = "error">
+		{{ error }}
+	</p>
+	{% endif %}
+	{{ studentForm.as_p }}
+	<p>
+		<input type = "hidden" name = "profileType" value = "student"/>
+		<input type = "submit" value = "Créer un compte"/>
+	</p>
+</form>
+<form action="register" method="get" id = "employeeForm">
+{% csrf_token %}
+	{{ employeeForm.as_p }}
+	<p>
+		<input type = "hidden" name = "profileType" value = "employee"/>
+		<input type = "submit" value = "Créer un compte"/>
+	</p>
+</form>
+{% endblock content %}

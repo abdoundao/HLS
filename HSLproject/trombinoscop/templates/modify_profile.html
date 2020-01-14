@@ -1,0 +1,21 @@
+{% extends "base.html" %} <!-- ce template hérite de base.html -->
+{% load static %} <!-- récupération du chemin vers le dossier static -->
+
+{% block title %}Modification de mon profil{% endblock title %} <!-- Titre de la page -->
+
+{% block bodyId %}modifyProfilPage{% endblock bodyId %} <!-- id de la section content -->
+
+<!-- 
+	contenu de la section content 
+	contient un formulaire avec le token de sécurité et le formulaire fourni par django
+-->
+{% block content %}
+<h1>Modification de mon profil</h1>
+<form action="modifyProfile" method="get">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p>
+		<input type="submit" value="Modifier"/>
+	</p>
+</form>
+{% endblock content %}

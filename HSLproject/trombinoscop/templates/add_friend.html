@@ -1,0 +1,20 @@
+{% extends "base.html" %} <!-- ce template hérite de base.html -->
+{% load static %} <!-- récupération du chemin vers le dossier static -->
+
+{% block title %}Ajout d'un ami{% endblock title %} <!-- Titre de la page -->
+
+{% block bodyId %}addUserPage{% endblock bodyId %} <!-- id de la section content -->
+<!-- 
+	contenu de la section content 
+	contient un formulaire avec le token de sécurité et le formulaire fourni par django
+-->
+{% block content %}
+<h1>Ajout d'un ami</h1>
+<form action="addFriend" method="get">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<p>
+		<input type="submit" value="Ajouter"/>
+	</p>
+</form>
+{% endblock content %}

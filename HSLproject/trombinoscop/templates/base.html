@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+    <head>
+	<title>Trombinoscop - {% block title %}Bienvenue{% endblock title %}</title>
+	{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    {% block headContent %}{% endblock headContent %}
+    </head>
+    <body id="{% block bodyId %}{% endblock bodyId %}">
+	<header>{% block headerContent %}{% endblock headerContent %}</header>
+        <section id="content">
+                {% block content %}{% endblock content %}
+        </section>
+    </body>
+</html>

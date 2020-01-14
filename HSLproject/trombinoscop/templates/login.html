@@ -1,0 +1,34 @@
+{% extends "base.html" %} <!-- ce template hérite de base.html -->
+{% load static %} <!-- récupération du chemin vers le dossier static -->
+
+{% block title %}Connexion{% endblock title %} <!-- Titre de la page -->
+
+{% block bodyId %}loginPage{% endblock bodyId %} <!-- id de la section content -->
+<!-- contenu de la head pour ajouter les css et script -->
+{% block headContent %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}"/>
+{% endblock headContent %}
+
+<!-- contenu du header -->
+{% block headerContent %}
+<p>Trombinoscop</p>
+{% endblock headerContent %}
+
+<!-- 
+	contenu de la section content 
+	contient un formulaire avec le token de sécurité et le formulaire fourni par django
+-->
+{% block content %}
+<form action="login" method="post">{% csrf_token %}
+	{% if error %}
+	<p class = "error">
+		{{ error }}
+	</p>
+	{% endif %}
+	{{ form.as_p }}
+	<p>
+		<input type="submit" value="Se connecter"/>
+		<a href="register">Créer un compte</a>
+	</p>
+</form>
+{% endblock content %}
